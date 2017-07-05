@@ -1,7 +1,7 @@
 function centroids = computeCentroids(X, idx, K)
-%COMPUTECENTROIDS returns the new centroids by computing the means of the 
+%COMPUTECENTROIDS returns the new centroids by computing the means of the
 %data points assigned to each centroid.
-%   centroids = COMPUTECENTROIDS(X, idx, K) returns the new centroids by 
+%   centroids = COMPUTECENTROIDS(X, idx, K) returns the new centroids by
 %   computing the means of the data points assigned to each centroid. It is
 %   given a dataset X where each row is a single data point, a vector
 %   idx of centroid assignments (i.e. each entry in range [1..K]) for each
@@ -23,10 +23,14 @@ centroids = zeros(K, n);
 %               should contain the mean of the data points assigned to
 %               centroid i.
 %
-% Note: You can use a for-loop over the centroids to compute this.
+% Note: You can use a for-loop over the centroids to compute this7.
 %
 
-
+for i = 1:K
+  c_idx = idx == i;
+  x_i = X .* c_idx;
+  centroids(i,:) = sum(x_i, 1) / sum(c_idx);
+end
 
 
 
@@ -37,4 +41,3 @@ centroids = zeros(K, n);
 
 
 end
-
